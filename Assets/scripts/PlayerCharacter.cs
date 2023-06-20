@@ -22,5 +22,12 @@ public class PlayerCharacter : MonoBehaviour
         experience = 0;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("faggot");
+        }
 
+    }
 }
