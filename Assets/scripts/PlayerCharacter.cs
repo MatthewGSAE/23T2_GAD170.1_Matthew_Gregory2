@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
+using TMPro;
 using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
     // Variables will go first
 
-    [SerializeField] private int attack;
-    [SerializeField] private int health;
-    [SerializeField] private int level;
-    [SerializeField] private int experience;
+    [SerializeField] private double attack = 10;
+    [SerializeField] private int health = 100;
+    [SerializeField] private int level = 1;
+    [SerializeField] private int experience = 0;
+    [SerializeField] private double exptolevelup = 10;
+
+
+    public TMP_Text combatLog;
+
+    
 
     // Methods will go underneath here
 
@@ -20,14 +28,39 @@ public class PlayerCharacter : MonoBehaviour
         health = 100;
         level = 1;
         experience = 0;
+        
+        Debug.Log("face my minions fool");
+        combatLog.text = "Yo wassup";
+
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("faggot");
+            Debug.Log("you have attacked the enemy");
+            Debug.Log("attack: " + Mathf.Round((float)attack * 100) / 100);
         }
 
+        if (experience >= exptolevelup)
+        {
+            Levelup();
+        }
+
+        if (level == 5)
+        {
+            combatLog.text = ("YOU HAVE BEATEN ME");
+            Debug.Log("YOU HAVE BEATEN ME");
+        }
+    }
+
+
+    private void Levelup()
+    {
+        attack *= 125.25;
+        level++;
+        exptolevelup *= 1.45;
+        combatLog.text = "level up";
+        Debug.Log("level up");
     }
 }
