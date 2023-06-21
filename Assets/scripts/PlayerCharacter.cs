@@ -28,25 +28,25 @@ public class PlayerCharacter : MonoBehaviour
         health = 100;
         level = 1;
         experience = 0;
-        
+        // starting game
         Debug.Log("face my minions fool");
         combatLog.text = "Yo wassup";
 
     }
 
     private void Update()
-    {
+    {// attacking
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("you have attacked the enemy");
             Debug.Log("attack: " + Mathf.Round((float)attack * 100) / 100);
         }
-
+        // leveling up
         if (experience >= exptolevelup)
         {
             Levelup();
         }
-
+        // winning
         if (level == 5)
         {
             combatLog.text = ("YOU HAVE BEATEN ME");
@@ -54,7 +54,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-
+    // for leveling up
     private void Levelup()
     {
         attack *= 125.25;
